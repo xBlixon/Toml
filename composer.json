@@ -13,5 +13,7 @@
             "name": "Xawier Słupik"
         }
     ],
-    "require": {}
+    "require-dev": {
+        "phpunit/phpunit": "12"
+    }
 }
