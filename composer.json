@@ -1,0 +1,17 @@
+{
+    "name": "blixon/toml",
+    "description": "Toml v1.0.0 specification compatible PHP parser",
+    "type": "library",
+    "license": "MIT",
+    "autoload": {
+        "psr-4": {
+            "Blixon\\Toml\\": "src/"
+        }
+    },
+    "authors": [
+        {
+            "name": "Xawier Słupik"
+        }
+    ],
+    "require": {}
+}
