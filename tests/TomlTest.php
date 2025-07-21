@@ -11,7 +11,7 @@ final class TomlTest extends TestCase
 {
     public function testTomlFromFile(): void
     {
-        $arr = Toml::fromFile("./test-config.toml");
+        $arr = Toml::fromFile("./tests/test-config.toml");
         $this->assertSame([], $arr);
     }
 }
