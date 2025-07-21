@@ -1,7 +1,5 @@
 <?php
 
-namespace Blixon\tests;
-
 use Blixon\Toml\Toml;
 use PHPUnit\Framework\Attributes\CoversClass;
 use PHPUnit\Framework\TestCase;
