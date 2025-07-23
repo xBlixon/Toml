@@ -20,6 +20,8 @@ class FileReader
 
     public function getLine(): string|false
     {
-        return next($this->lines);
+        $line = current($this->lines);
+        next($this->lines);
+        return $line;
     }
 }
