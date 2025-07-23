@@ -8,9 +8,11 @@ use Blixon\Toml\FileReader;
 #[CoversClass(FileReader::class)]
 class FileTest extends TestCase
 {
-    public function testFile(): void
+    private string $testConfigPath = "./tests/test-config.toml";
+
+    public function testOpenValidFile(): void
     {
-        new FileReader("./tests/test-config.toml");
+        new FileReader($this->testConfigPath);
         $this->expectNotToPerformAssertions();
     }
 
@@ -18,5 +20,13 @@ class FileTest extends TestCase
     {
         $this->expectException(FileReaderException::class);
         new FileReader("./tests/test-config-not-existent.toml");
+    }
+
+    public function testGetLine(): void
+    {
+        $reader = new FileReader($this->testConfigPath);
+        $reader->getLine();
+        $second = $reader->getLine();
+        $this->assertEquals("year = 1984 #Comment", $second);
     }
 }
