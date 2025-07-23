@@ -4,8 +4,24 @@ namespace Blixon\Toml;
 
 class Toml
 {
-    public static function fromFile(string $filename): array
+    private FileReader $reader;
+
+    protected function __construct(){}
+
+    public static function fromFile(string $filename): self
     {
-        return [];
+        $toml = new self();
+        $toml->reader = new FileReader($filename);
+        $toml->assembleArray();
+        return $toml;
+    }
+
+    private function assembleArray(): array
+    {
+        $ARRAY = [];
+        while ($line = $this->reader->getLine()) {
+            // array assembly logic
+        }
+        return $ARRAY;
     }
 }
