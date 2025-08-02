@@ -2,26 +2,28 @@
 
 namespace Blixon\Toml;
 
+use Blixon\DotArray\DotArray;
+
 class Toml
 {
-    private FileReader $reader;
+    private DotArray $array;
 
     protected function __construct(){}
 
-    public static function fromFile(string $filename): self
+    public static function fromFile(string $file): self
     {
         $toml = new self();
-        $toml->reader = new FileReader($filename);
-        $toml->assembleArray();
+        $toml->assembleArray($file);
         return $toml;
     }
 
-    private function assembleArray(): array
+    private function assembleArray(string $file): void
     {
-        $ARRAY = [];
-        while ($line = $this->reader->getLine()) {
+        $ARRAY = new DotArray([]);
+        $reader = new FileReader($file);
+        while ($line = $reader->getLine()) {
             // array assembly logic
         }
-        return $ARRAY;
+        $this->array = $ARRAY;
     }
 }
