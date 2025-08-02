@@ -9,13 +9,13 @@ class FileReader
     /**
      * @throws FileReaderException
      */
-    public function __construct(string $filename)
+    public function __construct(string $file)
     {
-        if (!file_exists($filename)) {
-            $path = realpath($filename);
+        if (!file_exists($file)) {
+            $path = realpath($file);
             throw new FileReaderException("File: $path does not exist.");
         }
-        $this->lines = file($filename, FILE_IGNORE_NEW_LINES);
+        $this->lines = file($file, FILE_IGNORE_NEW_LINES);
     }
 
     public function getLine(): string|false
