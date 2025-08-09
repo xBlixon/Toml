@@ -21,8 +21,8 @@ class Toml
     {
         $ARRAY = new DotArray([]);
         $reader = new FileReader($file);
-        while ($line = $reader->getLine()) {
-            // array assembly logic
+        while (!$reader->hasFinished()) {
+            $line = new LineAnalyzer($reader);
         }
         $this->array = $ARRAY;
     }

@@ -24,4 +24,14 @@ class FileReader
         next($this->lines);
         return $line;
     }
+
+    public function hasFinished(): bool
+    {
+        // Current will only give string or false
+        $line = current($this->lines);
+        if (gettype($line) == "string") {
+            return false;
+        }
+        return true;
+    }
 }
