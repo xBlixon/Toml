@@ -6,7 +6,7 @@ use PHPUnit\Framework\TestCase;
 use Blixon\Toml\FileReader;
 
 #[CoversClass(FileReader::class)]
-class FileTest extends TestCase
+class FileReaderTest extends TestCase
 {
     private string $testConfigPath = "./tests/test-config.toml";
 
@@ -32,12 +32,13 @@ class FileTest extends TestCase
 
     public function testFromText(): void
     {
-        $reader = FileReader::fromText(
+        $reader = FileReader::fromText
+        (
             <<<TOML
-hello = world
-key = value
-
-TOML
+            hello = world
+            key = value
+            
+            TOML
         );
         $this->assertEquals(
             [
