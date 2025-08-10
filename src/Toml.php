@@ -7,22 +7,23 @@ use Blixon\DotArray\DotArray;
 class Toml
 {
     private DotArray $array;
+    private FileReader $reader;
 
     protected function __construct(){}
 
     public static function fromFile(string $file): self
     {
         $toml = new self();
-        $toml->assembleArray($file);
+        $toml->reader = FileReader::fromFile($file);
+        $toml->assembleArray();
         return $toml;
     }
 
-    private function assembleArray(string $file): void
+    private function assembleArray(): void
     {
         $ARRAY = new DotArray([]);
-        $reader = new FileReader($file);
-        while (!$reader->hasFinished()) {
-            $line = new LineAnalyzer($reader);
+        while (!$this->reader->hasFinished()) {
+            $line = new LineAnalyzer($this->reader);
         }
         $this->array = $ARRAY;
     }

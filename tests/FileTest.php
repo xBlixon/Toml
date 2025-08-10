@@ -12,21 +12,40 @@ class FileTest extends TestCase
 
     public function testOpenValidFile(): void
     {
-        new FileReader($this->testConfigPath);
+        FileReader::fromFile($this->testConfigPath);
         $this->expectNotToPerformAssertions();
     }
 
     public function testFileNotFound(): void
     {
         $this->expectException(FileReaderException::class);
-        new FileReader("./tests/test-config-not-existent.toml");
+        FileReader::fromFile("./tests/test-config-not-existent.toml");
     }
 
     public function testGetLine(): void
     {
-        $reader = new FileReader($this->testConfigPath);
+        $reader = FileReader::fromFile($this->testConfigPath);
         $reader->getLine();
         $second = $reader->getLine();
         $this->assertEquals("year = 1984 #Comment", $second);
+    }
+
+    public function testFromText(): void
+    {
+        $reader = FileReader::fromText(
+            <<<TOML
+hello = world
+key = value
+
+TOML
+        );
+        $this->assertEquals(
+            [
+                "hello = world",
+                "key = value",
+                ""
+            ],
+            $reader->getAllLines()
+        );
     }
 }
