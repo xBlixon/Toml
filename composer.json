@@ -18,6 +18,7 @@
     },
     "require": {
         "php": ">=8.3",
+        "ext-mbstring": "*",
         "blixon/dot-array": "1.0.0"
     }
 }
