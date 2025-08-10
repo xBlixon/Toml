@@ -2,14 +2,27 @@
 
 namespace Blixon\Toml;
 
-readonly class LineAnalyzer
+class LineAnalyzer
 {
+    readonly public string $key;
+    readonly public mixed $value;
+
     private FileReader $reader;
-    public string $key;
-    public mixed $value;
+    private string $currentLine;
 
     public function __construct(FileReader &$reader)
     {
         $this->reader = $reader;
+        $this->currentLine = $this->reader->getLine();
+    }
+
+    private function loadNextLine(): void
+    {
+        if($this->reader->hasFinished()) {
+            throw new LineAnalyzerException(
+                "Unexpected End-Of-File."
+            );
+        }
+        $this->currentLine = $this->reader->getLine();
     }
 }
